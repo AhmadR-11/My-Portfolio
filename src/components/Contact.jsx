@@ -50,12 +50,12 @@ export default function Contact() {
     
     // EmailJS configuration
     // These are the actual parameters you need to set up in your EmailJS account
-    emailjs.sendForm(
-      'ahmad123', // Replace with your EmailJS service ID
-      'template_t4ieqoy', // Replace with your EmailJS template ID
-      form.current,
-      '7cTTSxgl7eEw_8akp' // Replace with your EmailJS public key
-    )
+      emailjs.sendForm(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        form.current,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      )
       .then((result) => {
         console.log('Email sent successfully:', result.text);
         setStatus({ 
