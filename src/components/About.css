@@ -1,41 +1,76 @@
-/* About Component Styles */
+/* About.css */
 .about-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 50px;
-  max-width: 1200px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
-.about-text {
-  flex: 1;
-  text-align: left;
-}
-
-.about-text p {
-  font-size: 1.1rem;
-  margin-bottom: 20px;
-}
-
-.skills-container {
-  flex: 1;
-}
-
-.skill-tag {
-  display: inline-block;
-  background: rgba(118, 199, 192, 0.2);
-  color: var(--primary);
-  padding: 8px 16px;
-  margin: 5px;
-  border-radius: 20px;
+.about-terminal-body {
   font-size: 0.9rem;
-  border: 1px solid var(--primary);
+  line-height: 1.6;
 }
 
-/* About Responsive Styles */
+.mt-4 { margin-top: 1rem; }
+.mt-6 { margin-top: 2rem; }
+
+.term-prompt {
+  font-family: 'JetBrains Mono', monospace;
+  color: #e2e8f0;
+  margin-bottom: 12px;
+}
+.term-user { color: #89e051; font-weight: 700; }
+.term-dir { color: #63b3ed; font-weight: 700; }
+.term-cmd { color: #e2e8f0; }
+
+.term-output {
+  color: #a0aec0;
+  margin-bottom: 24px;
+}
+
+.term-skills-grid {
+  display: flex;
+  flex-direction: column;
+}
+
+.term-skill-row {
+  display: flex;
+  gap: 16px;
+  text-decoration: none;
+  color: #a0aec0;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background 0.2s, color 0.2s;
+  white-space: pre;
+}
+.term-skill-row:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.term-perms { color: #f6ad55; }
+.term-links { color: #e2e8f0; }
+.term-owner { color: #89e051; }
+.term-group { color: #89e051; }
+.term-size { color: #63b3ed; }
+.term-date { color: #e2e8f0; }
+.term-filename { color: #ff8a65; font-weight: 700; }
+
+.term-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 1.2em;
+  background: #a0aec0;
+  vertical-align: middle;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
 @media (max-width: 768px) {
-  .about-container {
-    flex-direction: column;
+  .term-skill-row {
+    font-size: 0.75rem;
+    gap: 8px;
+    overflow-x: auto;
   }
 }

@@ -1,0 +1,125 @@
+/* TechStack.css */
+.tech-stack-section {
+  padding: 40px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tech-stack-container {
+  width: 100%;
+  max-width: 900px;
+  min-height: 350px;
+  background: #0a0a0f;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  cursor: crosshair;
+}
+
+.tech-stack-title {
+  padding: 16px 20px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  color: #a0aec0;
+}
+
+.tech-balls-area {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 300px;
+}
+
+.tech-ball-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -35px; /* Half of ball height to center origin */
+  margin-left: -35px; /* Half of ball width */
+  z-index: 2;
+}
+
+.tech-ball {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(99, 179, 237, 0.15) 0%, rgba(10, 10, 15, 0.95) 70%);
+  border: 1px solid rgba(99, 179, 237, 0.3);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6), inset 0 0 10px rgba(99, 179, 237, 0.15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
+}
+
+.tech-stack-container:hover .tech-ball {
+  /* On hover, brighten the balls up slightly to show they are unpacked */
+  border-color: rgba(137, 224, 81, 0.5);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(137, 224, 81, 0.2);
+}
+
+.tech-ball-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.tech-icon {
+  font-size: 1.4rem;
+  color: #e2e8f0;
+  filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));
+  transition: color 0.3s, transform 0.3s;
+}
+
+.tech-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: #a0aec0;
+  opacity: 0;
+  transition: opacity 0.3s ease 0.1s;
+}
+
+/* Show text only when expanded */
+.tech-stack-container:hover .tech-name {
+  opacity: 1;
+}
+
+.tech-stack-container:hover .tech-icon {
+  color: #89e051;
+  transform: translateY(-2px);
+  filter: drop-shadow(0 0 8px rgba(137,224,81,0.5));
+}
+
+.tech-hint {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.3);
+  pointer-events: none;
+  animation: pulse-hint 2s infinite;
+}
+
+@keyframes pulse-hint {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}
+
+@media (max-width: 768px) {
+  /* Mobile scattering radius will need to be smaller, handled by JS ideally, 
+     but we can just scale down the container if needed */
+  .tech-stack-container {
+    min-height: 400px;
+  }
+}

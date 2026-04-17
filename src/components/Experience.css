@@ -1,0 +1,82 @@
+/* Experience.css */
+.exp-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.exp-terminal-body {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.boot-log-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.boot-line {
+  display: flex;
+  gap: 12px;
+  color: #e2e8f0;
+  white-space: pre-wrap;
+}
+
+.boot-time {
+  color: #a0aec0;
+  width: 90px;
+  flex-shrink: 0;
+}
+
+.boot-status {
+  font-weight: 700;
+  white-space: pre;
+}
+
+.status-ok {
+  color: #89e051;
+}
+
+.status-info {
+  color: #63b3ed;
+}
+
+.boot-message {
+  flex-grow: 1;
+}
+
+.exp-summary {
+  margin-top: 16px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border-left: 2px solid #89e051;
+  color: #a0aec0;
+}
+
+.exp-summary h3 {
+  color: #e2e8f0;
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+
+.exp-summary p {
+  margin: 0;
+}
+
+.exp-summary strong {
+  color: #f6ad55;
+  font-weight: 700;
+}
+
+@media (max-width: 640px) {
+  .exp-terminal-body {
+    font-size: 0.75rem;
+  }
+  .boot-line {
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 4px;
+  }
+  .boot-time { width: auto; margin-right: 8px; }
+}

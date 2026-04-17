@@ -1,49 +1,44 @@
-import React from 'react';
-import { FaLinkedin, FaGithub, FaInstagram, FaHeart } from 'react-icons/fa';
+"use client";
+
+import { useEffect, useState } from 'react';
+import { FaCircle, FaGithub, FaLinkedin, FaInstagram, FaCodeBranch } from 'react-icons/fa';
 import './Footer.css';
 
-const socialLinks = [
-  { icon: <FaLinkedin />, url: 'https://www.linkedin.com/in/ahmad-raza-53482b316/', ariaLabel: 'LinkedIn' },
-  { icon: <FaGithub />, url: 'https://github.com/Blasty11', ariaLabel: 'GitHub' },
-  { icon: <FaInstagram />, url: 'https://www.instagram.com/ahmzie_e/', ariaLabel: 'Instagram' },
-];
-
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
-  
+  const [time, setTime] = useState('');
+  const [year, setYear] = useState('');
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      setTime(now.toLocaleTimeString('en-US', { hour12: false }));
+    };
+    setYear(String(new Date().getFullYear()));
+    updateTime();
+    const int = setInterval(updateTime, 1000);
+    return () => clearInterval(int);
+  }, []);
+
   return (
-    <footer className="footer">
-      <div className="footer-container">
-        <div className="footer-content">
-          <div className="footer-logo">
-            <span className="logo-text">AR</span>
-          </div>
-          
-          <p className="footer-tagline">
-            Building digital experiences with passion <FaHeart className="heart-icon" />
-          </p>
-          
-          <div className="footer-social">
-            {socialLinks.map((link, index) => (
-              <a 
-                key={index}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={link.ariaLabel}
-                className="footer-social-icon"
-              >
-                {link.icon}
-              </a>
-            ))}
-          </div>
-        </div>
-        
-        <div className="footer-bottom">
-          <p className="copyright">
-            &copy; {currentYear} Ahmad Raza. All rights reserved.
-          </p>
-        </div>
+    <footer className="term-footer">
+      <div className="tf-left">
+        <span className="tf-block tf-mode">NORMAL</span>
+        <span className="tf-block tf-branch"><FaCodeBranch /> main</span>
+        <span className="tf-block tf-file">~/portfolio/index.jsx</span>
+      </div>
+      
+      <div className="tf-center">
+        <span className="tf-text">© {year} Ahmad Raza. All rights reserved.</span>
+      </div>
+      
+      <div className="tf-right">
+        <span className="tf-block tf-socials">
+          <a href="https://github.com/Blasty11" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><FaGithub /></a>
+          <a href="https://www.linkedin.com/in/ahmad-raza-53482b316/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><FaLinkedin /></a>
+          <a href="https://www.instagram.com/ahmzie_e/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><FaInstagram /></a>
+        </span>
+        <span className="tf-block tf-status"><FaCircle className="status-blinker" /> ONLINE</span>
+        <span className="tf-block tf-time">{time}</span>
       </div>
     </footer>
   );
