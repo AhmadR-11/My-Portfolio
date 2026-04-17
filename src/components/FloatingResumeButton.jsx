@@ -7,7 +7,7 @@ export default function FloatingResumeButton() {
   return (
     <a
       className="floating-resume-btn"
-      href="/api/resume"
+      href="/Ahmad-Raza-CV.pdf"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Open resume in a new tab"
