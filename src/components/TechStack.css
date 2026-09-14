@@ -1,125 +1,624 @@
-/* TechStack.css */
+/* =====================================================
+   TECH STACK — Masterpiece macOS Sonoma Dark Showcase (Flexible)
+   ===================================================== */
+
 .tech-stack-section {
-  padding: 40px 0;
+  padding: 90px 5% 70px;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  background: #030712;
 }
 
-.tech-stack-container {
+.tech-stack-container-inner {
   width: 100%;
-  max-width: 900px;
-  min-height: 350px;
-  background: #0a0a0f;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
+  max-width: 1200px;
   display: flex;
   flex-direction: column;
-  position: relative;
+  align-items: center;
+}
+
+/* ── Section Header ── */
+.tech-header-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 44px;
+}
+
+.tech-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 99px;
+  background: rgba(99, 102, 241, 0.08);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #818cf8;
+  margin-bottom: 16px;
+}
+
+.badge-icon {
+  font-size: 0.78rem;
+  color: #38bdf8;
+}
+
+.tech-section-title {
+  font-size: clamp(2.2rem, 4.2vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -1px;
+  margin: 0 0 12px;
+  background: linear-gradient(135deg, #ffffff 40%, #cbd5e1 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.tech-section-subtitle {
+  font-size: 1.05rem;
+  color: #64748b;
+  max-width: 650px;
+  line-height: 1.6;
+}
+
+/* ── macOS Window ── */
+.tech-macos-window {
+  width: 100%;
+  background: rgba(13, 17, 26, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  box-shadow: 0 35px 80px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   overflow: hidden;
-  cursor: crosshair;
 }
 
-.tech-stack-title {
-  padding: 16px 20px;
+/* Header Bar */
+.tech-window-header {
+  height: 42px;
+  padding: 0 18px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 16px;
+  background: rgba(26, 34, 52, 0.75);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.tech-window-breadcrumb {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.85rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  color: #a0aec0;
+  font-size: 0.78rem;
 }
 
-.tech-balls-area {
-  flex-grow: 1;
+.tech-user-path { color: #38bdf8; font-weight: 600; }
+.tech-dir-path { color: #818cf8; }
+
+/* ── Toolbar Ribbon Strip (Horizontal Scrollable Tabs) ── */
+.tech-toolbar-strip {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background: rgba(18, 24, 38, 0.6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 16px;
+  overflow: hidden;
+}
+
+.tech-toolbar-left {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.term-prompt-cmd {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+/* ── Segmented Control Nav with Arrows ── */
+.mac-segmented-nav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 580px;
   position: relative;
-  height: 300px;
 }
 
-.tech-ball-wrapper {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-top: -35px; /* Half of ball height to center origin */
-  margin-left: -35px; /* Half of ball width */
-  z-index: 2;
-}
-
-.tech-ball {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, rgba(99, 179, 237, 0.15) 0%, rgba(10, 10, 15, 0.95) 70%);
-  border: 1px solid rgba(99, 179, 237, 0.3);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6), inset 0 0 10px rgba(99, 179, 237, 0.15);
+.nav-scroll-btn {
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #38bdf8;
   display: flex;
-  justify-content: center;
   align-items: center;
-  transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.72rem;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
 }
 
-.tech-stack-container:hover .tech-ball {
-  /* On hover, brighten the balls up slightly to show they are unpacked */
-  border-color: rgba(137, 224, 81, 0.5);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(137, 224, 81, 0.2);
+.nav-scroll-btn:hover {
+  background: rgba(56, 189, 248, 0.2);
+  border-color: rgba(56, 189, 248, 0.4);
+  color: #ffffff;
 }
 
-.tech-ball-inner {
+.nav-scroll-btn:active {
+  transform: scale(0.92);
+}
+
+/* Scrollable Category Wrapper */
+.mac-segmented-control-wrapper {
+  overflow-x: auto;
+  max-width: 480px;
+  scroll-behavior: smooth;
+  /* Hide scrollbar for category tabs */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.mac-segmented-control-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.mac-segmented-control {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  white-space: nowrap;
+}
+
+.mac-seg-btn {
+  padding: 6px 14px;
+  border-radius: 7px;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #94a3b8;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.mac-seg-btn:hover {
+  color: #f8fafc;
+}
+
+.mac-seg-btn.active {
+  background: rgba(56, 189, 248, 0.2);
+  color: #38bdf8;
+  font-weight: 600;
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Window Body & Fixed Scroll Container ── */
+.tech-window-body {
+  padding: 28px 24px 20px;
+}
+
+/* Fixed Max-Height Scroll Container (Prevents Section Blowout) */
+.tech-scroll-container {
+  max-height: 480px;
+  overflow-y: auto;
+  padding-right: 8px;
+  margin-bottom: 24px;
+}
+
+/* Custom Apple Glass Scrollbar */
+.tech-scroll-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.tech-scroll-container::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.4);
+  border-radius: 3px;
+}
+
+.tech-scroll-container::-webkit-scrollbar-thumb {
+  background: rgba(56, 189, 248, 0.25);
+  border-radius: 3px;
+}
+
+.tech-scroll-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(56, 189, 248, 0.5);
+}
+
+/* ── App Tile Grid ── */
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 18px;
+}
+
+.tech-card-tile {
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 4px;
+  gap: 14px;
+  padding: 18px 20px;
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  overflow: hidden;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.tech-icon {
-  font-size: 1.4rem;
-  color: #e2e8f0;
-  filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));
-  transition: color 0.3s, transform 0.3s;
+.tech-card-tile:hover {
+  border-color: rgba(56, 189, 248, 0.35);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
-.tech-name {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.6rem;
-  font-weight: 700;
-  color: #a0aec0;
+.tech-card-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
   opacity: 0;
-  transition: opacity 0.3s ease 0.1s;
+  transition: opacity 0.3s ease;
 }
 
-/* Show text only when expanded */
-.tech-stack-container:hover .tech-name {
+.tech-card-tile:hover .tech-card-glow {
   opacity: 1;
 }
 
-.tech-stack-container:hover .tech-icon {
-  color: #89e051;
-  transform: translateY(-2px);
-  filter: drop-shadow(0 0 8px rgba(137,224,81,0.5));
+/* Tile Top Row */
+.tech-tile-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
 
-.tech-hint {
+.tech-tile-icon-box {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  background: rgba(13, 17, 26, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.tech-tile-icon {
+  font-size: 1.45rem;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+}
+
+.tech-tile-tag {
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  padding: 3px 10px;
+  border-radius: 99px;
+}
+
+/* Info Text */
+.tech-tile-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.tech-tile-name {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 0 0 4px;
+}
+
+.tech-tile-desc {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  line-height: 1.4;
+}
+
+/* Terminal Footer Status Bar */
+.tech-terminal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  gap: 12px;
+}
+
+.term-prompt-left {
+  display: flex;
+  align-items: center;
+}
+
+.term-prompt-user { color: #38bdf8; font-weight: 700; }
+.term-prompt-dir { color: #818cf8; }
+.term-prompt-cmd { color: #f8fafc; }
+
+/* Absolutely Centered Status Pill */
+.term-status-pill {
   position: absolute;
-  bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  font-family: 'JetBrains Mono', monospace;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.3);
-  pointer-events: none;
-  animation: pulse-hint 2s infinite;
+  color: #94a3b8;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  padding: 4px 14px;
+  border-radius: 99px;
+  white-space: nowrap;
 }
 
-@keyframes pulse-hint {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 0.8; }
+.term-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
 }
 
-@media (max-width: 768px) {
-  /* Mobile scattering radius will need to be smaller, handled by JS ideally, 
-     but we can just scale down the container if needed */
-  .tech-stack-container {
-    min-height: 400px;
+/* ── Top-Left Search Container ── */
+.tech-search-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 5px 12px;
+  min-width: 200px;
+  transition: all 0.2s ease;
+}
+
+.tech-search-container:focus-within {
+  border-color: rgba(56, 189, 248, 0.4);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.15);
+}
+
+.tech-search-icon {
+  font-size: 0.78rem;
+  color: #38bdf8;
+}
+
+.tech-search-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
+  font-size: 0.8rem;
+  color: #f8fafc;
+  width: 100%;
+}
+
+.tech-search-input::placeholder {
+  color: #64748b;
+}
+
+.tech-search-clear {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  font-size: 0.72rem;
+  cursor: pointer;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+}
+
+.tech-search-clear:hover {
+  color: #f8fafc;
+}
+
+/* ── No Search Results State ── */
+.tech-no-results {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px 20px;
+  color: #94a3b8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.tech-reset-btn {
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: #38bdf8;
+  padding: 6px 16px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tech-reset-btn:hover {
+  background: rgba(56, 189, 248, 0.25);
+  color: #ffffff;
+}
+
+/* ── Footer Expand View Button ── */
+.tech-expand-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: #38bdf8;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  margin-left: auto;
+}
+
+.tech-expand-btn:hover {
+  background: rgba(56, 189, 248, 0.22);
+  border-color: rgba(56, 189, 248, 0.5);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(56, 189, 248, 0.25);
+}
+
+.expand-icon {
+  font-size: 0.75rem;
+}
+
+/* ── Full Window Modal Overlay (Opens on Top of Screen Separately) ── */
+.tech-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(3, 7, 18, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 4%;
+}
+
+.tech-modal-window {
+  width: 100%;
+  max-width: 1100px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  background: rgba(13, 17, 26, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 20px;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+}
+
+.tech-modal-close-btn {
+  margin-left: auto;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #cbd5e1;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.tech-modal-close-btn:hover {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  border-color: rgba(239, 68, 68, 0.4);
+}
+
+.tech-modal-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+}
+
+.tech-modal-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.tech-modal-body::-webkit-scrollbar-thumb {
+  background: rgba(56, 189, 248, 0.3);
+  border-radius: 4px;
+}
+
+.tech-modal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.modal-tile {
+  background: rgba(15, 23, 42, 0.8);
+}
+
+.modal-footer {
+  padding: 14px 24px;
+  background: rgba(18, 24, 38, 0.75);
+}
+
+.close-modal-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #cbd5e1;
+  margin-left: auto;
+}
+
+.close-modal-btn:hover {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: #ef4444;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 860px) {
+  .tech-toolbar-strip {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .tech-search-container {
+    width: 100%;
+  }
+  .mac-segmented-nav {
+    width: 100%;
+    max-width: 100%;
+  }
+  .mac-segmented-control-wrapper {
+    max-width: calc(100% - 64px);
+  }
+  .tech-grid {
+    grid-template-columns: 1fr;
+  }
+  .tech-scroll-container {
+    max-height: 420px;
+  }
+  .tech-terminal-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .term-status-pill {
+    position: static;
+    transform: none;
   }
 }
+
+

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import About from '../components/About';
@@ -9,16 +10,19 @@ import Projects from '../components/Projects';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 import FloatingResumeButton from '../components/FloatingResumeButton';
-
 import TechStack from '../components/TechStack';
+import PageLoader from '../components/PageLoader';
 
 export default function Home() {
+  const [isLoaded, setIsLoaded] = useState(false);
+
   return (
     <>
-      <Navbar />
+      <PageLoader onComplete={() => setIsLoaded(true)} />
+      <Navbar isLoaded={isLoaded} />
       <main>
         <section id="home">
-          <Hero />
+          <Hero isLoaded={isLoaded} />
         </section>
 
         <TechStack />
@@ -42,7 +46,6 @@ export default function Home() {
         <section id="projects">
           <Projects />
         </section>
-
 
         <div className="section-divider" />
         <section id="contact">

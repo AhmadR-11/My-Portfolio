@@ -6,38 +6,59 @@ import { FaHome, FaUser, FaCogs, FaFolderOpen, FaEnvelope, FaLinkedin, FaGithub,
 import './Navbar.css';
 
 const navItems = [
-  { name: 'Home', to: 'home', icon: FaHome },
-  { name: 'About', to: 'about', icon: FaUser },
-  { name: 'Services', to: 'services', icon: FaCogs },
-  { name: 'Projects', to: 'projects', icon: FaFolderOpen },
-  { name: 'Contact', to: 'contact', icon: FaEnvelope },
+  { name: 'Home', to: 'home', icon: FaHome, type: 'nav' },
+  { name: 'About', to: 'about', icon: FaUser, type: 'nav' },
+  { name: 'Services', to: 'services', icon: FaCogs, type: 'nav' },
+  { name: 'Projects', to: 'projects', icon: FaFolderOpen, type: 'nav' },
+  { name: 'Contact', to: 'contact', icon: FaEnvelope, type: 'nav' },
 ];
 
 const socialLinks = [
-  { icon: FaLinkedin, url: 'https://www.linkedin.com/in/ahmad-raza-53482b316/', label: 'LinkedIn' },
-  { icon: FaGithub, url: 'https://github.com/Blasty11', label: 'GitHub' },
-  { icon: FaInstagram, url: 'https://www.instagram.com/ahmzie_e/', label: 'Instagram' },
+  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/ahmad-raza-53482b316/', icon: FaLinkedin, type: 'social' },
+  { name: 'GitHub', url: 'https://github.com/Blasty11', icon: FaGithub, type: 'social' },
+  { name: 'Instagram', url: 'https://www.instagram.com/ahmzie_e/', icon: FaInstagram, type: 'social' },
 ];
 
-/* ─────────────────────────────────────────────────────────────
-   DockIcon — size driven by the dock-bar's mouseX motion value.
-   Only magnifies when cursor is over the dock bar.
-───────────────────────────────────────────────────────────── */
 function DockIcon({ item, mouseX, onClick, isActive }) {
   const ref = useRef(null);
 
-  // distance = cursor X  –  icon centre X
   const distance = useTransform(mouseX, (mx) => {
     const bounds = ref.current?.getBoundingClientRect();
     if (!bounds) return Infinity;
     return mx - (bounds.left + bounds.width / 2);
   });
 
-  // map distance → size  (far away = 40 px, dead-centre = 72 px)
-  const rawSize = useTransform(distance, [-120, 0, 120], [40, 72, 40]);
-  const size = useSpring(rawSize, { stiffness: 280, damping: 22, mass: 0.4 });
+  /* Smooth macOS magnification curve (44px base -> 70px peak) */
+  const rawSize = useTransform(distance, [-140, 0, 140], [44, 70, 44]);
+  const size = useSpring(rawSize, { stiffness: 320, damping: 24, mass: 0.2 });
+
+  /* Scaling icon font size proportionally (18px -> 28px) */
+  const rawIconSize = useTransform(distance, [-140, 0, 140], [18, 28, 18]);
+  const iconSize = useSpring(rawIconSize, { stiffness: 320, damping: 24, mass: 0.2 });
 
   const Icon = item.icon;
+
+  if (item.type === 'social') {
+    return (
+      <div className="dock-item-wrapper">
+        <motion.a
+          ref={ref}
+          href={item.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={item.name}
+          className="dock-icon dock-icon--social"
+          style={{ width: size, height: size }}
+          whileTap={{ scale: 0.88, y: -3 }}
+        >
+          <motion.div style={{ fontSize: iconSize }} className="dock-icon-inner">
+            <Icon />
+          </motion.div>
+        </motion.a>
+        <span className="dock-tooltip">{item.name}</span>
+      </div>
+    );
+  }
 
   return (
     <div className="dock-item-wrapper">
@@ -46,11 +67,13 @@ function DockIcon({ item, mouseX, onClick, isActive }) {
         id={`dock-${item.to}`}
         className={`dock-icon ${isActive ? 'dock-icon--active' : ''}`}
         style={{ width: size, height: size }}
-        whileTap={{ scale: 0.88 }}
+        whileTap={{ scale: 0.88, y: -3 }}
         onClick={() => onClick(item.to)}
         aria-label={item.name}
       >
-        <Icon />
+        <motion.div style={{ fontSize: iconSize }} className="dock-icon-inner">
+          <Icon />
+        </motion.div>
         {isActive && <span className="dock-dot" />}
       </motion.button>
       <span className="dock-tooltip">{item.name}</span>
@@ -58,12 +81,7 @@ function DockIcon({ item, mouseX, onClick, isActive }) {
   );
 }
 
-/* ─────────────────────────────────────────────────────────────
-   Main Navbar — mouseX is set only from the dock bar's events.
-   When cursor leaves, mouseX → Infinity so all icons shrink back.
-───────────────────────────────────────────────────────────── */
-export default function Navbar() {
-  // Infinity = "cursor not on dock" → all icons stay at base size
+export default function Navbar({ isLoaded = true }) {
   const mouseX = useMotionValue(Infinity);
   const [active, setActive] = useState('home');
 
@@ -91,12 +109,11 @@ export default function Navbar() {
     <nav className="dock-nav">
       <motion.div
         className="dock-bar"
-        /* Track cursor ONLY while it's inside the dock bar */
         onMouseMove={(e) => mouseX.set(e.clientX)}
         onMouseLeave={() => mouseX.set(Infinity)}
         initial={{ y: 100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ type: 'spring', stiffness: 200, damping: 22, delay: 0.3 }}
+        animate={isLoaded ? { y: 0, opacity: 1 } : { y: 100, opacity: 0 }}
+        transition={{ type: 'spring', stiffness: 180, damping: 20, delay: 0.5 }}
       >
         {navItems.map(item => (
           <DockIcon
@@ -110,21 +127,12 @@ export default function Navbar() {
 
         <div className="dock-divider" />
 
-        {socialLinks.map(({ icon: Icon, url, label }) => (
-          <div className="dock-item-wrapper" key={label}>
-            <motion.a
-              href={url}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={label}
-              className="dock-icon dock-icon--social"
-              whileHover={{ scale: 1.25, y: -4 }}
-              whileTap={{ scale: 0.88 }}
-            >
-              <Icon />
-            </motion.a>
-            <span className="dock-tooltip">{label}</span>
-          </div>
+        {socialLinks.map(item => (
+          <DockIcon
+            key={item.name}
+            item={item}
+            mouseX={mouseX}
+          />
         ))}
       </motion.div>
     </nav>
