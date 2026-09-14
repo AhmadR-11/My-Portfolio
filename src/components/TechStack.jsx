@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaAws } from 'react-icons/fa';
 import { 
@@ -28,6 +28,11 @@ const techData = [
 
 export default function TechStack() {
   const [isHovered, setIsHovered] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <div className="tech-stack-section">
@@ -42,7 +47,7 @@ export default function TechStack() {
         </div>
 
         <div className="tech-balls-area">
-          {techData.map((tech, i) => {
+          {mounted && techData.map((tech, i) => {
             const total = techData.length;
             
             // Clustered State (Tightly packed overlapping clump)
