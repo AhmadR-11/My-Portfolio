@@ -14,8 +14,8 @@ const navItems = [
 ];
 
 const socialLinks = [
-  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/ahmad-raza-53482b316/', icon: FaLinkedin, type: 'social' },
-  { name: 'GitHub', url: 'https://github.com/Blasty11', icon: FaGithub, type: 'social' },
+  { name: 'LinkedIn', url: 'http://linkedin.com/in/ahmad-raza-53482b316/', icon: FaLinkedin, type: 'social' },
+  { name: 'GitHub', url: 'https://github.com/AhmadR-11/', icon: FaGithub, type: 'social' },
   { name: 'Instagram', url: 'https://www.instagram.com/ahmzie_e/', icon: FaInstagram, type: 'social' },
 ];
 
