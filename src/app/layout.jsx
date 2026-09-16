@@ -11,7 +11,7 @@ export const metadata = {
     default: 'Ahmad Raza — Full-Stack Software Engineer & AI Developer',
     template: '%s | Ahmad Raza'
   },
-  description: 'Official portfolio of Ahmad Raza. Full-Stack Software Engineer & AI Developer specializing in Next.js, Node.js, Python, AWS Cloud, and Autonomous AI LLM Agents.',
+  description: 'Full-Stack Software Engineer & AI Systems Developer crafting production SaaS platforms, autonomous AI agents, and cloud architectures.',
   keywords: [
     'Ahmad Raza',
     'Ahmad Raza Software Engineer',
@@ -36,7 +36,7 @@ export const metadata = {
   },
   openGraph: {
     title: 'Ahmad Raza — Full-Stack Software Engineer & AI Developer',
-    description: 'Official portfolio of Ahmad Raza. Full-Stack Engineer, AI Systems Developer, & Cloud Architect.',
+    description: 'Full-Stack Software Engineer & AI Systems Developer crafting production SaaS platforms, autonomous AI agents, and cloud architectures.',
     url: siteUrl,
     siteName: 'Ahmad Raza Portfolio',
     images: [
@@ -53,7 +53,7 @@ export const metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Ahmad Raza — Full-Stack Software Engineer',
-    description: 'Official portfolio of Ahmad Raza. Crafting high-performance SaaS platforms, autonomous AI agents, and cloud automation.',
+    description: 'Full-Stack Software Engineer & AI Systems Developer crafting production SaaS platforms, autonomous AI agents, and cloud architectures.',
     images: ['/profile.png'],
   },
   robots: {
