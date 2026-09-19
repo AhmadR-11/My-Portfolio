@@ -3,11 +3,13 @@
    ===================================================== */
 .dock-nav {
   position: fixed;
-  bottom: 24px;
+  bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 1000;
   pointer-events: none; /* Container passes pointer events through */
+  width: auto;
+  max-width: 96vw;
 }
 
 /* Glass Shelf Container */
@@ -17,7 +19,7 @@
   align-items: flex-end;
   gap: 10px;
   padding: 10px 18px;
-  background: rgba(13, 17, 26, 0.72);
+  background: rgba(13, 17, 26, 0.78);
   backdrop-filter: blur(30px) saturate(190%);
   -webkit-backdrop-filter: blur(30px) saturate(190%);
   border: 1px solid rgba(255, 255, 255, 0.14);
@@ -27,6 +29,14 @@
     0 0 0 1px rgba(255, 255, 255, 0.08) inset,
     inset 0 1px 0 rgba(255, 255, 255, 0.25);
   user-select: none;
+  max-width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.dock-bar::-webkit-scrollbar {
+  display: none;
 }
 
 /* Dock Item Wrapper */
@@ -35,6 +45,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex-shrink: 0;
 }
 
 /* macOS Floating Tooltip Pill */
@@ -43,7 +54,7 @@
   bottom: calc(100% + 14px);
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(15, 23, 42, 0.92);
+  background: rgba(15, 23, 42, 0.95);
   color: #f8fafc;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
   font-size: 11px;
@@ -68,7 +79,7 @@
   transform: translateX(-50%);
   border-width: 5px;
   border-style: solid;
-  border-color: rgba(15, 23, 42, 0.92) transparent transparent transparent;
+  border-color: rgba(15, 23, 42, 0.95) transparent transparent transparent;
 }
 
 .dock-item-wrapper:hover .dock-tooltip {
@@ -128,8 +139,45 @@
 /* Glass Shelf Vertical Divider */
 .dock-divider {
   width: 1px;
-  height: 36px;
+  height: 34px;
   background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  margin: 0 4px;
+  margin: 0 3px;
   align-self: center;
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Mobile & Tablet Adjustments
+   -------------------------------------------------------------------------- */
+@media (max-width: 640px) {
+  .dock-nav {
+    bottom: 12px;
+  }
+
+  .dock-bar {
+    gap: 6px;
+    padding: 7px 12px;
+    border-radius: 20px;
+  }
+
+  .dock-icon {
+    border-radius: 12px;
+  }
+
+  .dock-divider {
+    height: 26px;
+    margin: 0 2px;
+  }
+
+  .dock-tooltip {
+    display: none; /* Tooltips disabled on touch screens to prevent sticky hover state */
+  }
+}
+
+@media (max-width: 440px) {
+  .dock-bar {
+    gap: 4px;
+    padding: 6px 8px;
+    border-radius: 18px;
+  }
 }

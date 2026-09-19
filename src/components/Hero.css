@@ -110,9 +110,9 @@
 
 /* Main Name Title */
 .hero-main-title {
-  font-size: clamp(3.4rem, 6.2vw, 5rem);
+  font-size: clamp(2.3rem, 6.2vw, 4.8rem);
   font-weight: 900;
-  line-height: 1.05;
+  line-height: 1.08;
   letter-spacing: -1.8px;
   margin: 0 0 12px 0;
   background: linear-gradient(135deg, #ffffff 30%, #cbd5e1 100%);
